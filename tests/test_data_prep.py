@@ -17,7 +17,7 @@ SEED = int(SEED)
 
 def test_split_sizes():
     data = load_data(DATA_PATH)
-    X_train, X_test, _, _ = split_data(data, test_size=0.2, seed=SEED)
+    _, X_test, _, _ = split_data(data, test_size=0.2, seed=SEED)
     assert len(X_test) == pytest.approx(len(data) * 0.2, abs=1)
 
 
@@ -29,9 +29,9 @@ def test_sum_sets_sizes():
 
 def test_wrong_input_load_data():
     with pytest.raises(FileNotFoundError):
-        data = load_data("This file doesn't exist")
+        _ = load_data("This file doesn't exist")
 
 
 def test_no_input_load_data():
     with pytest.raises(TypeError):
-        data = load_data()
+        _ = load_data()
